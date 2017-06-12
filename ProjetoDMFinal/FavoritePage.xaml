@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="ProjetoDMFinal.FavoritePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ProjetoDMFinal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Background="White" Orientation="Vertical" MaxHeight="120">
+                <Image Source="Assets/hulk.png"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right">
+                <Button Click="Button_Back" Content="Back to Heroes" Margin="10"/>
+                <ScrollViewer Height="500" Width="500">
+                    <ListBox Name="listBoxHeros" ItemsSource="{Binding}" Background="White">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal" Width="100">
+                                        <Image Width="90" Height="90">
+                                            <Image.Source>
+                                                <BitmapImage UriSource="{Binding Thumbnail.Path}" />
+                                            </Image.Source>
+                                        </Image>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Width="300" />
+                                    <Button DataContext="{Binding Id}" Click="Button_Remove_Favorite" Background="Transparent" BorderBrush="Transparent" >
+                                        <Image Source="Assets/favorite_remove.png"></Image>
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
+            </StackPanel>
+        </StackPanel>
+        
+    </Grid>
+</Page>

@@ -7,7 +7,45 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <StackPanel Orientation="Vertical" Background="Transparent">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Background="White" Orientation="Vertical" MaxHeight="120">
+                    <Image Source="Assets/hulk.png"></Image>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Find a Hero:" Margin="10, 10" />
+                    <TextBox TextChanged="TextBox_TextChanged" Height="20" Width="148" Margin="10, 0"/>
+                    <Button Click="Button_PageFavorite" Content="Favorites" Margin="10, 0"/>
+                </StackPanel>
+            </StackPanel>
+            <ScrollViewer Height="500" Width="500">
+                <ListBox Name="listBoxHeros" ItemsSource="{Binding}" Background="White">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel VirtualizingStackPanel.VirtualizationMode="Recycling"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" Width="100">
+                                    <Image Width="90" Height="90">
+                                        <Image.Source>
+                                            <BitmapImage UriSource="{Binding Thumbnail.Path}" />
+                                        </Image.Source>
+                                    </Image>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Name}" TextWrapping="Wrap" Width="300" />
+                                <Button DataContext="{Binding Id}" Click="Button_Favorite" Background="Transparent" BorderBrush="Transparent" >
+                                    <Image Source="Assets/favorite.png"></Image>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </StackPanel>
 
     </Grid>
 </Page>

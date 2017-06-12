@@ -10,8 +10,20 @@ namespace ProjetoDMFinal.Model
     [DataContract]
     public class Thumbnail
     {
+        private string path;
+
         [DataMember(Name = "path")]
-        public string Path {get; set;}
+        public string Path
+        {
+            get
+            {
+                return this.path + "." + Extension;
+            }
+            set
+            {
+                this.path = value;
+            }
+        }
 
         [DataMember(Name = "extension")]
         public string Extension { get; set; }
